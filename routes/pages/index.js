@@ -3,10 +3,10 @@ import pages_middleware from '../../middleware/pages/pages.js'
 import public_middleware from '../../middleware/pages/public.js'
 import auth_middleware from '../../middleware/pages/auth.js'
 import admin_middleware from '../../middleware/pages/admin.js'
-import getFilesInDirectory from '../../utils/getFilesInDirectory.js'
+import get_files_in_directory from '../../utils/get_files_in_directory.js'
 
 const regex = new RegExp('^views/(((public|private|admin)/)?)?')
-const pages = getFilesInDirectory('./views').map(page => {
+const pages = get_files_in_directory('./views').map(page => {
   const route = page.replace(regex, '').split('.')[0]
   return {
     filePath: page,
@@ -16,7 +16,7 @@ const pages = getFilesInDirectory('./views').map(page => {
   }
 })
 
-const router = new HyperExpress.Router()
+const pages_router = new HyperExpress.Router()
 
 pages.forEach(page => {
   const middlewares = [pages_middleware]
@@ -29,9 +29,9 @@ pages.forEach(page => {
     middlewares.push(public_middleware)
   }
 
-  router.get(page.route, ...middlewares, async (req, res) => {
+  pages_router.get(page.route, ...middlewares, async (req, res) => {
     await res.render(page.filePath)
   })
 })
 
-export default router
+export default pages_router
