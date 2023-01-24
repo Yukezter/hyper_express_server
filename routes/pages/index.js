@@ -1,5 +1,6 @@
 import HyperExpress from 'hyper-express'
 import pages_middleware from '../../middleware/pages/pages.js'
+import public_middleware from '../../middleware/pages/public.js'
 import auth_middleware from '../../middleware/pages/auth.js'
 import admin_middleware from '../../middleware/pages/admin.js'
 import getFilesInDirectory from '../../utils/getFilesInDirectory.js'
@@ -24,6 +25,8 @@ pages.forEach(page => {
     if (page.admin) {
       middlewares.push(admin_middleware)
     }
+  } else {
+    middlewares.push(public_middleware)
   }
 
   router.get(page.route, ...middlewares, async (req, res) => {
