@@ -9,7 +9,7 @@ const regex = new RegExp('^views/((public|private|admin)/)?')
 const pages = get_files_in_directory('./views').map(page => {
   const route = page.replace(regex, '').split('.')[0]
   return {
-    filePath: page,
+    file: page,
     private: page.startsWith('views/private/'),
     admin: page.startsWith('views/admin/'),
     route: route.startsWith('index') ? '/' : '/' + route,
@@ -30,7 +30,7 @@ pages.forEach(page => {
   }
 
   pages_router.get(page.route, ...middlewares, async (req, res) => {
-    await res.render(page.filePath)
+    await res.render(page.file)
   })
 })
 
