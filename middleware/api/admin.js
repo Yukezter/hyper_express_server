@@ -1,8 +1,8 @@
-const isAdmin = false
+const is_admin = false
 
 const admin_middleware = async (req, res) => {
   console.log('admin middleware')
-  if (!isAdmin) {
+  if (!is_admin) {
     res.status(403).send('FORBIDDEN')
   }
 }
