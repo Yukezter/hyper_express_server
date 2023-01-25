@@ -1,15 +1,12 @@
 import render from '../../utils/render.js'
 
-const isAuthenticated = false
+const is_authenticated = false
 
-const public_middleware = (req, res, next) => {
+const public_middleware = async (req, res) => {
   console.log('public middleware')
-
-  if (isAuthenticated) {
-    return res.redirect('/')
+  if (is_authenticated) {
+    res.redirect('/')
   }
-
-  next()
 }
 
 export default public_middleware
