@@ -21,7 +21,7 @@ api_router.get('/updateProfile', auth_middleware, account.update_profile)
 
 // 404 handler for API routes (not pages)
 api_router.all('*', (req, res) => {
-  res.status(404).send('NOT_FOUND')
+  res.status(404).send('Not found')
 })
 
 export default api_router
