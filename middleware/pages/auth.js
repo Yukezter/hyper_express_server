@@ -1,8 +1,8 @@
-const isAuthenticated = false
+const is_authenticated = false
 
 const auth_middleware = async (req, res) => {
   console.log('auth middleware')
-  if (!isAuthenticated) {
+  if (!is_authenticated) {
     res.redirect('/auth/login')
   }
 }
