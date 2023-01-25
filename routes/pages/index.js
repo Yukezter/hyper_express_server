@@ -5,7 +5,7 @@ import auth_middleware from '../../middleware/pages/auth.js'
 import admin_middleware from '../../middleware/pages/admin.js'
 import get_files_in_directory from '../../utils/get_files_in_directory.js'
 
-const regex = new RegExp('^views/(((public|private|admin)/)?)?')
+const regex = new RegExp('^views/((public|private|admin)/)?')
 const pages = get_files_in_directory('./views').map(page => {
   const route = page.replace(regex, '').split('.')[0]
   return {
